@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz Time</h1>
+        <p class="timer">Time left: <span id="time">10</span>s</p>
+        <p id="question" class="question">
+            Which Star Trek race advances itself through assimilation?
+        </p>
+        <div id="answers">
+            <button class="answer">Vulcan</button>
+            <button class="answer">Klingon</button>
+            <button class="answer">Borg</button>
+            <button class="answer">Betazoid</button>
+        </div>
+    </div>
+
+    <script>
+        let questions = [];
+        let questionIndex = 0;
+        let score = 0;
+        let timer;
+        
+        function fetchQuestions() {
+            fetch("opentdb_api_url")
+                .then(res => res.json())
+                .then(data => {
+                    questions = data.results.map(q => {
+                        let answers = [...q.incorrect_answers, q.correct_answer];
+                        return { ...q, answers: answers.sort(() => Math.random() - 0.5) };
+                    });
+                    console.log("questions: " + questions);
+                    displayQuestion();
+                });
+        }
+
+        function displayQuestion() {
+            if (questionIndex < questions.length) { // Je hebt nog vragen die je moet oplossen
+                console.log(questions[questionIndex]);
+                // TODO: Vraag weergeven in div met id "question"
+
+                
+                // TODO: Mogelijke antwoorden weergeven
+                let answersDiv = document.getElementById("answers");
+                // verwijder de inhoud van de div met id = "answers"
+                answersDiv.innerHTML = "";
+                                
+                // overloop alle answers...
+                questions[questionIndex].answers.forEach(answer => {
+                    // ... en voer per answer onderstaande code uit
+
+                    // TODO: maak dynamisch een knop aan en voeg deze toe aan de div "answers"
+
+         
+                });
+            }
+            else {  // Je hebt alle vragen van deze quiz opgelost.
+                const percentage = 100; // TODO: bereken percentage
+
+                document.querySelector(".quiz-container").innerHTML = `
+                    <div class="game-over">
+                        <h2>Einde van de quiz!</h2>
+                        <div class="score-circle">
+                            <div class="score-number">${score}</div>
+                            <div class="score-total">/ ${questions.length}</div>
+                        </div>
+                        <div class="score-percentage">${Math.round(percentage)}%</div>
+                        <div class="category-container">
+                            <div id="category" class="category" style="background: #28a745">
+                                Expert
+                            </div>
+                        </div>
+                        <button class="restart-btn" onclick="location.reload()">Opnieuw Spelen</button>
+                    </div>
+                `;
+                clearInterval(timer);
+            }
+
+            // TODO: reset timer
+        }
+
+        function checkAnswer(answer) {
+            const buttons = document.querySelectorAll('.answer');
+            buttons.forEach(button => {
+                button.disabled = true;
+                if (button.textContent === questions[questionIndex].correct_answer) {
+                    // TODO: voeg de CSS-class 'correct' toe aan de classlist van de button met het juiste antwoord
+                    
+
+                } else if (button.textContent === answer) {
+                    // TODO: voeg de CSS-class 'incorrect' toe aan de classlist van de button die foutief werd aangeklikt
+
+                }
+            });
+
+            // TODO: verhoog de score met 1 punt als het antwoord correct was
+
+
+            setTimeout(() => {
+                questionIndex++;
+                displayQuestion();
+            }, 1500);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            let timeLeft = 10;
+            document.getElementById("time").textContent = timeLeft;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("time").textContent = timeLeft;
+                if (timeLeft === 0) {
+                    questionIndex++;
+                    displayQuestion();
+                }
+            }, 1000);
+        }
+
+        const answersContainer = document.getElementById('answers');
+
+        answersContainer.addEventListener('click', (event) => {
+            const button = event.target.closest('button');
+            
+            if (button) {
+                const answer = button.textContent;
+                checkAnswer(answer);
+            }
+        });
+
+        fetchQuestions();
+    </script>
+</body>
+</html>
