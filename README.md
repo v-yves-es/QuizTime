@@ -71,7 +71,7 @@ De opgehaalde vragen moeten **op de webpagina** worden getoond in plaats van een
 1. Verwijder de inhoud van de `<div id="question">`
 2. Pas de functie `displayQuestion()` aan:
    - Zorg ervoor dat je in het if-statement het element met het id "question" kan opvragen (tip: `document.getElementById()`) 
-   - vervang de `textContent`van dit element met de huidige vraag uit de array `questions`. Gebruik de `questionIndex` om de huidige (eerste) vraag uit de array op te halen.
+   - vervang de `innerHTML`van dit element met de huidige vraag uit de array `questions`. Gebruik de `questionIndex` om de huidige (eerste) vraag uit de array op te halen.
 3. **Test de pagina** door te refreshen! 🔄
 
 ---
