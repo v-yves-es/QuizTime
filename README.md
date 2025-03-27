@@ -130,7 +130,7 @@ Als de tijd op 0 komt zal:
 
 ---
 
-🏆 Eindscore tonen
+## 🏆 Eindscore tonen
 
 Op het einde van de quiz wordt geen nieuwe vraag gesteld, maar zal de else-tak van de functie `displayQuestion()` worden uitgevoerd. Hier tonen we de behaalde score! 🎯
 
