@@ -1,6 +1,6 @@
 # 🎉 QuizTime - een interactieve quiz!
 
-Welkom bij **QuizTime**! In dit project bouwen we een dynamische quizapp waarbij quizvragen automatisch worden opgehaald via een API. Volg de stappen hieronder om de statische webpagina stap voor stap om te bowuen tot een interactieve dynamische webapplicatie. 🚀
+Welkom bij **QuizTime**! In dit project bouwen we een dynamische quizapp waarbij quizvragen automatisch worden opgehaald via een API. Volg de stappen hieronder om de statische webpagina stap voor stap om te bouwen tot een interactieve dynamische webapplicatie. 🚀
 
 <p align="center">
   <img src="images/question.png" alt="Quiz vraag voorbeeld" width="45%">
