@@ -35,7 +35,7 @@
                         let answers = [...q.incorrect_answers, q.correct_answer];
                         return { ...q, answers: answers.sort(() => Math.random() - 0.5) };
                     });
-                    console.log("questions: " + questions);
+                    console.log(questions);
                     displayQuestion();
                 });
         }
